@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FirstProductsAPI.Migrations
 {
     /// <inheritdoc />
@@ -18,11 +20,23 @@ namespace FirstProductsAPI.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ProductName = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
-                    isActive = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "ProductId", "IsActive", "Price", "ProductName" },
+                values: new object[,]
+                {
+                    { 1, true, 6000m, "Iphone 14" },
+                    { 2, true, 7000m, "Iphone 15" },
+                    { 3, true, 8000m, "Iphone 16" },
+                    { 4, false, 9000m, "Iphone 17" },
+                    { 5, true, 9500m, "Iphone 18" }
                 });
         }
 
