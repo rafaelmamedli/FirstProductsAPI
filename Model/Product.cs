@@ -6,8 +6,8 @@ namespace FirstProductsAPI.Model
     {
         public int ProductId { get; set; }
         [Required]
-        public string ProductName { get; set; }
+        public string ProductName { get; set; }  
         public decimal Price { get; set; } 
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }
