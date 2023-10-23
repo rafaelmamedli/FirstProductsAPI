@@ -39,8 +39,9 @@ namespace FirstProductsAPI.Controllers
 
             var p = await _context
                 .Products
+                .Where(i => i.ProductId == id)
                 .Select(p => ProductToDTO(p))
-                .FirstOrDefaultAsync(i => i.ProductId == id);
+                .FirstOrDefaultAsync();
 
             if (p == null)
             {
@@ -118,6 +119,14 @@ namespace FirstProductsAPI.Controllers
 
         private static ProductDTO ProductToDTO(Product p)
         {
+            var entity = new ProductDTO();
+            if(p != null)
+            {
+                entity.ProductId = p.ProductId;
+                entity.ProductName = p.ProductName;
+                entity.Price = p.Price;
+
+            }
             return new ProductDTO
             {
                 ProductId = p.ProductId,
